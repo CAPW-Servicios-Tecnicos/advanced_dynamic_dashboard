@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-################################################################################
+#############################################################################
 #
 #    Cybrosys Technologies Pvt. Ltd.
 #
-#    Copyright (C) 2023-TODAY Cybrosys Technologies(<https://www.cybrosys.com>).
-#    Author: Unnimaya C O (odoo@cybrosys.com)
+#    Copyright (C) 2024-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU AFFERO
 #    GENERAL PUBLIC LICENSE (AGPL v3), Version 3.
@@ -18,23 +18,13 @@
 #    (AGPL v3) along with this program.
 #    If not, see <http://www.gnu.org/licenses/>.
 #
-################################################################################
+#############################################################################
 from odoo import http
 from odoo.http import request
 
 
 class DynamicDashboard(http.Controller):
     """Class to search and filter values in dashboard"""
-
-    @http.route('/tile/details', type='json', auth='user')
-    def tile_details(self, **kw):
-        """Function to get tile details"""
-        tile_id = request.env['dashboard.block'].sudo().browse(
-            int(kw.get('id')))
-        if tile_id:
-            return {'model': tile_id.model_id.model, 'filter': tile_id.filter,
-                    'model_name': tile_id.model_id.name}
-        return False
 
     @http.route('/custom_dashboard/search_input_chart', type='json',
                 auth="public", website=True)

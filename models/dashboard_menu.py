@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-################################################################################
+#############################################################################
 #
 #    Cybrosys Technologies Pvt. Ltd.
 #
-#    Copyright (C) 2023-TODAY Cybrosys Technologies(<https://www.cybrosys.com>).
-#    Author: Unnimaya C O (odoo@cybrosys.com)
+#    Copyright (C) 2024-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Author: Cybrosys Techno Solutions(<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU AFFERO
 #    GENERAL PUBLIC LICENSE (AGPL v3), Version 3.
@@ -18,7 +18,7 @@
 #    (AGPL v3) along with this program.
 #    If not, see <http://www.gnu.org/licenses/>.
 #
-################################################################################
+#############################################################################
 from odoo import api, fields, models
 
 
@@ -27,7 +27,7 @@ class DashboardMenu(models.Model):
     _name = "dashboard.menu"
     _description = "Dashboard Menu"
 
-    name = fields.Char(string="Name",
+    name = fields.Char(string="Name", ondelete='cascade',
                        help="Enter a name for the dashboard menu")
     menu_id = fields.Many2one('ir.ui.menu', string="Parent Menu",
                               help="Parent Menu Location of New Dashboard",
@@ -38,14 +38,15 @@ class DashboardMenu(models.Model):
                                       "these groups to see the menu")
     client_action_id = fields.Many2one('ir.actions.client',
                                        string="Client Action",
-                                       help="Client action")
+                                       help="Client action of the "
+                                            "corresponding dashboard menu")
 
     @api.model
     def create(self, vals):
         """Function to create new dashboard menu"""
         action_id = self.env['ir.actions.client'].create({
             'name': vals['name'],
-            'tag': 'advanced_dynamic_dashboard',
+            'tag': 'AdvancedDynamicDashboard',
         })
         vals['client_action_id'] = action_id.id
         self.env['ir.ui.menu'].create({
@@ -53,7 +54,7 @@ class DashboardMenu(models.Model):
             'parent_id': vals['menu_id'],
             'action': 'ir.actions.client,%d' % (action_id.id,)
         })
-        return super().create(vals)
+        return super(DashboardMenu, self).create(vals)
 
     def write(self, vals):
         """Function to save edited data in dashboard menu"""
@@ -61,13 +62,13 @@ class DashboardMenu(models.Model):
             client_act_id = rec['client_action_id'].id
             self.env['ir.ui.menu'].search(
                 [('parent_id', '=', rec['menu_id'].id),
-                 ('action', '=', f'ir.actions.client,{client_act_id}')]).write(
-                {'name': vals['name'] if 'name' in vals.keys() else rec['name'],
-                 'parent_id': vals['menu_id'] if 'menu_id' in vals.keys() else
-                 rec['menu_id'],
-                 'action': f'ir.actions.client,{client_act_id}'
-                 })
-        return super().write(vals)
+                 ('action', '=', f'ir.actions.client,{client_act_id}')]).write({
+                'name': vals['name'] if 'name' in vals.keys() else rec['name'],
+                'parent_id': vals['menu_id'] if 'menu_id' in vals.keys() else
+                rec['menu_id'],
+                'action': f'ir.actions.client,{client_act_id}'
+            })
+        return super(DashboardMenu, self).write(vals)
 
     def unlink(self):
         """Delete dashboard along with menu item"""
@@ -76,4 +77,4 @@ class DashboardMenu(models.Model):
                 [('parent_id', '=', rec['menu_id'].id),
                  ('action', '=',
                   f'ir.actions.client,{rec["client_action_id"].id}')]).unlink()
-        return super().unlink()
+        return super(DashboardMenu, self).unlink()

@@ -1,11 +1,23 @@
-.row {
+.row-class {
     margin: 1rem;
 }
+.resize-drag {
+  border-radius: 8px;
+  padding: 20px;
+  margin: 1rem;
+  color: white;
+  font-size: 20px;
+  font-family: sans-serif;
 
-.o_dynamic_navbar {
-    margin: 1rem 0 1rem 0;
+  touch-action: none;
+  box-sizing: border-box;
 }
 
+.theme {
+    position: absolute;
+    right: 60.5em;
+    padding-top:inherit;
+}
 .card {
     background-color: transparent !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -14,28 +26,30 @@
     transition: transform 0.2s;
 }
 
-.grid-stack-item {
-    position: absolute !important;
+.dashboard_pdf{
+    position: absolute;
+    right: 26.5em;
+    padding-top:inherit;
+}
+
+.dashboard_mail{
+    position: absolute;
+    right: 24.5em;
+    padding-top:inherit;
+}
+
+.resize-drag {
+    position: relative !important;
     font-size: 100%;
     overflow:hidden;
 }
 
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.card-header {
-    border-radius: 0.5rem 0.5rem 0 0 !important;
+h2, h3 {
+    font-size: 150% !important;
 }
 
 .container {
     max-width: 100% !important;
-}
-
-.tile-container {
-    padding: 0 0 0 10px;
-    border-radius: 0.5rem !important;
 }
 
 .tile {
@@ -47,21 +61,6 @@
     border-radius: 5px;
     cursor: pointer;
     transition: transform 0.2s;
-}
-
-
-#search-input-chart {
-    margin-left: auto;
-    height: 2.4rem;
-}
-
-#searchclear {
-    position: absolute;
-    margin: 0.3rem 0 0 13.5rem;
-}
-
-.navbar-collapse {
-    margin-bottom: 8px !important;
 }
 
 div.card-header {
@@ -79,13 +78,12 @@ div.card-header {
     border-radius: 0.5rem;
 }
 
-.toggle-btn {
-    font-size: 15px;
-    position: absolute;
-    left: 18.2em;
-    display: inline-block;
-    padding: 4px 0 0 0;
-    border-radius: 0.5rem;
+.modal-header .btn-close {
+    display: none;
+}
+
+.modal-title{
+    margin-inline-end: auto;
 }
 
 .theme-text {
@@ -99,34 +97,6 @@ div.card-header {
     right: 1.7em;
 }
 
-/*!* Hide default HTML checkbox *!*/
-.toggle-btn input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-/*!* The slider *!*/
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
-
-.theme_icon {
-    font-weight: bold;
-}
-
-.theme_icon:hover {
-    text-shadow: 2px 1px 20px #795db3;
-}
-
 .block_setting {
     position: absolute;
     top: 7px;
@@ -136,18 +106,7 @@ div.card-header {
 .block_delete {
     position: absolute;
     top: 7px;
-    right: 20px;
-}
-
-.export_option {
-    position: absolute;
-    top: 9px;
-    right: 520px;
-    font-size: 15px;
-}
-
-#ExportMenu::after {
-    display: none;
+    right: 10px;
 }
 
 .tile_edit {
@@ -158,18 +117,17 @@ div.card-header {
     color: #3f3f3f;
 }
 
-.dropdown-export {
-    right: 0;
-    top: 1em;
-}
-
-.block_setting, .block_delete, .block_export {
+.block_setting, .block_delete, .block_image, .block_pdf, .block_xlsx, .block_csv, .block_export {
     display: none;
 }
 
-.grid-stack-item:hover .block_setting,
-.grid-stack-item:hover .block_export,
-.grid-stack-item:hover .block_delete {
+.resize-drag:hover .block_setting,
+.resize-drag:hover .block_xlsx,
+.resize-drag:hover .block_csv,
+.resize-drag:hover .block_image,
+.resize-drag:hover .block_pdf,
+.resize-drag:hover .block_export,
+.resize-drag:hover .block_delete {
     display: block;
 }
 
@@ -178,6 +136,34 @@ div.card-header {
     top: 0px;
     left: 3px;
     font-size: 16px;
+}
+
+.chart-image {
+    position: absolute;
+    top: 3px;
+    right: 106px;
+    font-size: 16px;
+}
+
+.chart-pdf {
+    position: absolute;
+    top: 3px;
+    right: 82px;
+    font-size: 16px;
+}
+
+.chart-csv {
+    position: absolute;
+    top: 3px;
+    right: 58px;
+    font-size: 16px;
+}
+
+.chart-xlsx {
+    position: absolute;
+    top: 6px;
+    right: 34px;
+    font-size: 15px;
 }
 
 .chart-setting {
@@ -215,6 +201,14 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+.o_kanban_record {
+    background-color: #e8e8e8 !important;
+}
+
+.oe_module_name {
+    background-color: #ffffff !important;
+}
+
 .bootbox .modal-footer .btn-danger:hover {
     background-color: #ff595c;
 }
@@ -238,12 +232,13 @@ input:checked + .slider:before {
     left: 2.5em;
     top: 2.5em;
 }
+
 .navbar {
+    top:10px;
     padding: 1.2rem 0 2.6rem 0 !important;
     border-bottom: 1px solid #3f3f3f1a !important;
     color: #444444;
-    background-color: #e1e2e26e !important;
-    border-bottom: 5px solid #eef0f0 !important;
+    background-color: #ffffff !important;
 }
 
 .theme_icon:hover {
@@ -254,12 +249,6 @@ input:checked + .slider:before {
     margin-top: 1.2em;
     border-radius: 0.5em;
 }
-
-.grid-stack > .grid-stack-item > .grid-stack-item-content {
-    overflow-x: unset !important;
-    overflow-y: unset !important;
-}
-
 
 .dropdown-add-items {
     position: absolute;
@@ -280,7 +269,6 @@ input:checked + .slider:before {
     background-color: #59507b;
 }
 
-
 @media (max-width: 767px) {
     .navbar {
         padding: 1.2rem 0 1.2rem 0;
@@ -290,28 +278,11 @@ input:checked + .slider:before {
         padding: 1.2rem 0 2rem 0;
     }
 
-    .search-group {
-        width: 50%;
-        position: absolute;
-        right: 3.7em;
-    }
-
     .o_web_client.o_touch_device .btn, .o_web_client.o_touch_device .btn .btn-sm, .o_web_client.o_touch_device .btn .btn-group-sm > .btn {
         font-size: 1.08333333rem;
         padding: 6px 8px;
         margin-top: 39px;
         margin-left: -39px;
-    }
-
-    .grid-stack-item-content {
-        cursor: move;
-        width: 211px;
-        height: 63px;
-    }
-
-    /*    !* styles for mobile devices *!*/
-    .grid-stack.grid-stack-one-column-mode > .grid-stack-item {
-        width: 100% !important;
     }
 
     .dropdown-item {
@@ -337,6 +308,7 @@ input:checked + .slider:before {
 
     #edit_layout {
         display: none;
+        border-radius: inherit;
     }
 
     #search-button {
@@ -344,13 +316,19 @@ input:checked + .slider:before {
         left: 3.5em;
     }
 
+    #searchclear {
+        position: absolute;
+        margin: 0.3rem 0 0 9.9rem;
+    }
+
     .search-box {
         top: -3em;
         left: 7.5em;
         margin: 0em -1.9em;
         width: 79%;
-        position: relative;
     }
+
+
     .navbar-toggler {
         margin: 0.2em 1em;
         padding: 0.25rem 0.5rem;

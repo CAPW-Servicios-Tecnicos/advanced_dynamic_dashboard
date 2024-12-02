@@ -10,10 +10,12 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">
-                            <h3 class="my-2 ms-3">
-                                Name:
-                                <field name="name"/>
-                            </h3>
+                            <center>
+                                <h3 class="my-2 ms-3">
+                                    Name:
+                                    <field name="name"/>
+                                </h3>
+                            </center>
                             <div class="row">
                                 <hr class="mt4 mb4"/>
                                 <div class="col-6 text-center">
@@ -49,6 +51,7 @@
             </form>
         </field>
     </record>
+
     <!--    Action specified for the dashboard menu-->
     <record id="dashboard_menu_action" model="ir.actions.act_window">
         <field name="name">Dashboards Menu</field>
@@ -56,8 +59,8 @@
         <field name="res_model">dashboard.menu</field>
         <field name="view_mode">kanban,form</field>
     </record>
-    <!--    Dashboards Menu-->
-    <menuitem id="dashboard_menu_menu" name="Dashboards"
-              parent="advanced_dynamic_dashboard.dashboard_menu_root"
-              sequence="0" action="dashboard_menu_action"/>
+    <!--Menu Item of the model Dashboard Menu-->
+    <menuitem name="Dashboard Menu" id="dashboard_menu_view_action"
+              parent="advanced_dynamic_dashboard.menu_dashboard"
+              sequence="10" action="dashboard_menu_action"/>
 </odoo>
